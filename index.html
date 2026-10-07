@@ -3,8 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Trắng</title>
+    <title>I Miss U</title>
     <style>
+      :root {
+        --bg-1: #fffafc;
+        --bg-2: #ffe4ef;
+        --pink-1: #ff79b0;
+        --pink-2: #ff4d8d;
+        --text: #4a1d2f;
+        --white: #ffffff;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -12,17 +21,72 @@
       html, body {
         margin: 0;
         width: 100%;
-        height: 100%;
-        background: #ffffff;
-        font-family: Arial, sans-serif;
+        min-height: 100%;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       body {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 24px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.65);
+        border: 2px solid rgba(255, 121, 176, 0.4);
+        border-radius: 28px;
+        box-shadow: 0 20px 60px rgba(255, 77, 141, 0.12);
+        padding: 48px 40px;
+        text-align: center;
+        backdrop-filter: blur(5px);
+      }
+
+      .mini {
+        font-size: 14px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--pink-2);
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 7vw, 6rem);
+        line-height: 1;
+        color: var(--text);
+        letter-spacing: 0.08em;
+        text-transform: lowercase;
+      }
+
+      .heart {
+        font-size: 2.2rem;
+        margin: 22px 0 14px;
+        color: var(--pink-2);
+        animation: pulse 1.4s ease-in-out infinite;
+      }
+
+      .note {
+        margin: 0;
+        font-size: 1.05rem;
+        color: rgba(74, 29, 47, 0.82);
+        letter-spacing: 0.08em;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <div class="card">
+      <div class="mini">for you</div>
+      <h1>i miss u</h1>
+      <div class="heart">❤</div>
+      <p class="note">đỉnh thật rồi</p>
+    </div>
+  </body>
 </html>
