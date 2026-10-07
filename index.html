@@ -70,6 +70,12 @@
         letter-spacing: 0.08em;
         text-transform: lowercase;
         text-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        opacity: 0;
+        transition: opacity 0.9s ease;
+      }
+
+      .content.ready {
+        opacity: 1;
       }
     </style>
   </head>
@@ -88,11 +94,12 @@
 
     <div class="overlay"></div>
 
-    <div class="content">i miss u</div>
+    <div class="content" id="textContent">i miss u</div>
 
     <script>
       const slides = Array.from(document.querySelectorAll('.bg-slide'));
       const slider = document.getElementById('bgSlider');
+      const textContent = document.getElementById('textContent');
 
       const images = slides.map((slide) => {
         const match = slide.style.backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
@@ -107,6 +114,7 @@
         img.onerror = resolve;
       }))).then(() => {
         slider.classList.add('ready');
+        textContent.classList.add('ready');
 
         let current = 0;
         setInterval(() => {
