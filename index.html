@@ -6,87 +6,138 @@
     <title>I Miss U</title>
     <style>
       :root {
-        --bg-1: #fffafc;
-        --bg-2: #ffe4ef;
-        --pink-1: #ff79b0;
-        --pink-2: #ff4d8d;
-        --text: #4a1d2f;
-        --white: #ffffff;
+        --text: #fffaf7;
+        --soft: rgba(255, 255, 255, 0.34);
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       html, body {
         margin: 0;
         width: 100%;
-        min-height: 100%;
-        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        height: 100%;
         font-family: Arial, Helvetica, sans-serif;
+        background: #000;
       }
 
       body {
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+      }
+
+      .bg-slider {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .bg-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: scale(1.08);
+        transition: opacity 1.3s ease-in-out;
+      }
+
+      .bg-slide.active {
+        opacity: 1;
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.42)),
+          radial-gradient(circle at center, rgba(255,255,255,0.08), rgba(0,0,0,0.30));
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: var(--text);
         padding: 24px;
       }
 
-      .card {
-        background: rgba(255, 255, 255, 0.65);
-        border: 2px solid rgba(255, 121, 176, 0.4);
-        border-radius: 28px;
-        box-shadow: 0 20px 60px rgba(255, 77, 141, 0.12);
-        padding: 48px 40px;
-        text-align: center;
+      .tag {
+        display: inline-block;
+        padding: 8px 18px;
+        border: 1px solid rgba(255,255,255,0.46);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.08);
         backdrop-filter: blur(5px);
-      }
-
-      .mini {
-        font-size: 14px;
-        letter-spacing: 0.25em;
+        font-size: 11px;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: var(--pink-2);
-        margin-bottom: 18px;
         font-weight: 700;
+        margin-bottom: 18px;
       }
 
       h1 {
         margin: 0;
-        font-size: clamp(2.5rem, 7vw, 6rem);
-        line-height: 1;
-        color: var(--text);
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.9;
         letter-spacing: 0.08em;
         text-transform: lowercase;
+        text-shadow: 0 10px 28px rgba(0,0,0,0.35);
       }
 
       .heart {
-        font-size: 2.2rem;
-        margin: 22px 0 14px;
-        color: var(--pink-2);
-        animation: pulse 1.4s ease-in-out infinite;
+        margin: 20px 0 10px;
+        font-size: clamp(2.1rem, 5vw, 3.5rem);
+        animation: pulse 1.5s infinite ease-in-out;
       }
 
       .note {
         margin: 0;
-        font-size: 1.05rem;
-        color: rgba(74, 29, 47, 0.82);
-        letter-spacing: 0.08em;
+        font-size: clamp(0.9rem, 2vw, 1.3rem);
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+        color: rgba(255,255,255,0.9);
       }
 
       @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.2); opacity: 1; }
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <div class="mini">for you</div>
+    <div class="bg-slider" aria-hidden="true">
+      <div class="bg-slide active" style="background-image:url('IMG_4823.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4824.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4825.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4826.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4827.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4829.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4830.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4831.jpeg');"></div>
+      <div class="bg-slide" style="background-image:url('IMG_4832.jpeg');"></div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+      <div class="tag">for you</div>
       <h1>i miss u</h1>
       <div class="heart">❤</div>
       <p class="note">đỉnh thật rồi</p>
     </div>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll('.bg-slide'));
+      let current = 0;
+
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 3000);
+    </script>
   </body>
 </html>
